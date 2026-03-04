@@ -1,170 +1,81 @@
-import { CheckCircle, Calendar, BarChart3, Target, Users, HelpCircle } from 'lucide-react'
+import { CheckCircle2, HelpCircle, Target, ShieldCheck, BarChart3, BellRing } from 'lucide-react'
+
+const faqs = [
+  {
+    question: 'How do I add a new task?',
+    answer: 'Open Tasks, fill title and deadline, then tap Add Task.'
+  },
+  {
+    question: 'Can I track progress weekly?',
+    answer: 'Yes. Analytics and Reports are grouped by week and preserved.'
+  },
+  {
+    question: 'How do reminders work?',
+    answer: 'Set reminder time when creating a task. In-app notifications trigger automatically.'
+  },
+  {
+    question: 'Can I share my performance?',
+    answer: 'Yes. Reports can be shared via WhatsApp and email, and downloaded as PDF.'
+  }
+]
 
 const About = () => {
-  // Use a defined dark color for headings and a strong indigo for accents
-  const darkHeadingColor = 'text-blue-900'
-  const accentColor = 'text-indigo-600'
-  const shadowStyle = 'shadow-xl shadow-gray-200/50 hover:shadow-2xl transition duration-300'
-
-  const faqs = [
-    {
-      question: 'How do I add a new task?',
-      answer: 'Go to the Tasks page, fill in the activity name, date, and time, then confirm it and click "Add Activity".'
-    },
-    {
-      question: 'Can I edit or delete tasks?',
-      answer: 'Yes! From the Dashboard, you can mark tasks as completed or delete them using the trash icon.'
-    },
-    {
-      question: 'How does the report generation work?',
-      answer: 'Click "Generate Weekly Report" in the Dashboard. It creates a PDF with all your completed activities and an auto-generated summary.'
-    },
-    {
-      question: 'Can I set reminders?',
-      answer: 'Absolutely! In the Reminder section of the Dashboard, add your reminder with date and time. The system will track them.'
-    },
-    {
-      question: 'What features help me analyze my activities?',
-      answer: 'The Dashboard includes: Performed More (shows frequent activities), Overview (scatter chart), and Calendar view for better visualization.'
-    }
-  ]
-
   return (
-    <div className="flex-1 bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 py-16">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className={`text-6xl font-extrabold ${darkHeadingColor} mb-4 tracking-tight`}>
-            About doMe
-          </h1>
-          <p className="text-xl text-gray-500 font-light">Your Daily Activity Manager, Redefined.</p>
-        </div>
+    <div className="page-shell">
+      <div className="container-shell py-6 md:py-8 pb-24 md:pb-8 space-y-4">
+        <section className="card p-5">
+          <h1 className="text-2xl md:text-3xl font-bold">About doME</h1>
+          <p className="mt-2 text-sm md:text-base opacity-80">
+            A professional single-user productivity tracker focused on execution, analytics, and weekly reporting.
+          </p>
+        </section>
 
-        {/* What is doMe */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className={`bg-white rounded-2xl ${shadowStyle} p-10`}>
-            <h2 className={`text-3xl font-bold ${darkHeadingColor} mb-6 flex items-center gap-4`}>
-              <Target size={30} className={accentColor} />
-              What is doMe?
-            </h2>
-            <p className="text-gray-700 text-lg leading-relaxed mb-6 border-l-4 border-indigo-300 pl-4">
-              doMe is a comprehensive daily activity management application designed to help you organize, 
-              track, and analyze your everyday tasks. Whether you're managing work projects, personal goals, 
-              or routine activities, doMe provides a clean, intuitive interface to keep you on track.
-            </p>
-            <p className="text-gray-700 text-lg leading-relaxed">
-              Our mission is to help users improve their **productivity** by providing clear insights into their 
-              activity patterns, making it easier to plan ahead and maintain consistency in achieving their goals.
-            </p>
-          </div>
-        </div>
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article className="card p-4">
+            <Target size={20} />
+            <h3 className="mt-2 font-semibold">Task Execution</h3>
+            <p className="text-sm opacity-75 mt-1">Organize tasks with priority, deadlines, and weekly day grouping.</p>
+          </article>
+          <article className="card p-4">
+            <BellRing size={20} />
+            <h3 className="mt-2 font-semibold">Reminder System</h3>
+            <p className="text-sm opacity-75 mt-1">In-app reminders with optional alarm for better follow-through.</p>
+          </article>
+          <article className="card p-4">
+            <BarChart3 size={20} />
+            <h3 className="mt-2 font-semibold">Analytics</h3>
+            <p className="text-sm opacity-75 mt-1">Completion rate, overdue tracking, daily/weekly comparison and score.</p>
+          </article>
+          <article className="card p-4">
+            <ShieldCheck size={20} />
+            <h3 className="mt-2 font-semibold">Private by Account</h3>
+            <p className="text-sm opacity-75 mt-1">Each user only accesses their own tasks and reports.</p>
+          </article>
+        </section>
 
-        {/* How It Helps */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <h2 className={`text-4xl font-bold ${darkHeadingColor} mb-10 text-center`}>
-            Key Features to Boost Your Productivity
+        <section className="card p-5">
+          <h2 className="text-xl font-semibold flex items-center gap-2">
+            <HelpCircle size={18} /> Frequently Asked Questions
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className={`bg-white rounded-xl ${shadowStyle} p-6 border-t-4 border-indigo-500`}>
-              <CheckCircle className={`${accentColor} mb-4`} size={36} />
-              <h3 className={`font-extrabold ${darkHeadingColor} mb-2`}>Task Management</h3>
-              <p className="text-gray-600 text-sm">
-                Easily add, organize, and track your daily activities with date and time management.
-              </p>
-            </div>
-
-            <div className={`bg-white rounded-xl ${shadowStyle} p-6 border-t-4 border-indigo-500`}>
-              <Calendar className={`${accentColor} mb-4`} size={36} />
-              <h3 className={`font-extrabold ${darkHeadingColor} mb-2`}>Reminders</h3>
-              <p className="text-gray-600 text-sm">
-                Never miss important events with built-in reminder notifications and scheduling.
-              </p>
-            </div>
-
-            <div className={`bg-white rounded-xl ${shadowStyle} p-6 border-t-4 border-indigo-500`}>
-              <BarChart3 className={`${accentColor} mb-4`} size={36} />
-              <h3 className={`font-extrabold ${darkHeadingColor} mb-2`}>Activity Analysis</h3>
-              <p className="text-gray-600 text-sm">
-                Visualize your activity patterns with interactive charts and reports.
-              </p>
-            </div>
-
-            <div className={`bg-white rounded-xl ${shadowStyle} p-6 border-t-4 border-indigo-500`}>
-              <Target className={`${accentColor} mb-4`} size={36} />
-              <h3 className={`font-extrabold ${darkHeadingColor} mb-2`}>Progress Tracking</h3>
-              <p className="text-gray-600 text-sm">
-                Track completion rates and identify your most performed activities.
-              </p>
-            </div>
+          <div className="mt-4 space-y-4">
+            {faqs.map((faq) => (
+              <article key={faq.question} className="border-b border-[var(--border)] pb-3 last:border-b-0">
+                <h3 className="font-semibold">{faq.question}</h3>
+                <p className="text-sm opacity-80 mt-1">{faq.answer}</p>
+              </article>
+            ))}
           </div>
-        </div>
+        </section>
 
-        {/* Improvements */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className={`bg-white rounded-2xl ${shadowStyle} p-10`}>
-            <h2 className={`text-3xl font-bold ${darkHeadingColor} mb-8 flex items-center gap-4`}>
-              <Users size={30} className={accentColor} />
-              Recent Improvements
-            </h2>
-            <ul className="space-y-5">
-              <li className="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition duration-200">
-                <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={24} />
-                <div>
-                  <p className={`font-bold ${darkHeadingColor}`}>Enhanced Dashboard</p>
-                  <p className="text-gray-600 text-sm">New sections for better activity visualization and analysis.</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition duration-200">
-                <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={24} />
-                <div>
-                  <p className={`font-bold ${darkHeadingColor}`}>PDF Report Generation</p>
-                  <p className="text-gray-600 text-sm">Automated weekly reports with smart summaries.</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition duration-200">
-                <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={24} />
-                <div>
-                  <p className={`font-bold ${darkHeadingColor}`}>Interactive Calendar</p>
-                  <p className="text-gray-600 text-sm">Real-time calendar view for better planning.</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition duration-200">
-                <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={24} />
-                <div>
-                  <p className={`font-bold ${darkHeadingColor}`}>Modern UI/UX</p>
-                  <p className="text-gray-600 text-sm">Clean, responsive design with smooth animations.</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition duration-200">
-                <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={24} />
-                <div>
-                  <p className={`font-bold ${darkHeadingColor}`}>Activity Insights</p>
-                  <p className="text-gray-600 text-sm">Performed More section to identify patterns.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* FAQs */}
-        <div className="max-w-4xl mx-auto">
-          <div className={`bg-white rounded-2xl ${shadowStyle} p-10`}>
-            <h2 className={`text-3xl font-bold ${darkHeadingColor} mb-8 flex items-center gap-4`}>
-              <HelpCircle size={30} className={accentColor} />
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
-                  <h3 className={`font-extrabold ${darkHeadingColor} mb-2 text-xl cursor-pointer hover:text-indigo-600 transition duration-200`}>
-                    Q: {faq.question}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed pl-4 border-l-2 border-indigo-200">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <section className="card p-5">
+          <h2 className="text-xl font-semibold">Current Improvements</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Modular task, analytics and report pages</li>
+            <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Mobile-first navigation and layout</li>
+            <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Dark/light mode support on all pages including About</li>
+            <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Styled downloadable PDF reports</li>
+          </ul>
+        </section>
       </div>
     </div>
   )

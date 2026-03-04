@@ -1,12 +1,11 @@
 const Footer = () => {
   return (
-    <footer className="bg-dark-blue text-white py-6 mt-auto">
-      <div className="container mx-auto px-4 text-center">
-        <p>© All rights reserved | Powered by Mugabe Herve.</p>
+    <footer className="border-t border-[var(--border)] py-4 mt-auto">
+      <div className="container-shell text-center text-xs opacity-70">
+        © All rights reserved | Powered by Mugabe Herve.
       </div>
     </footer>
   )
 }
 
 export default Footer
-

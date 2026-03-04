@@ -18,14 +18,13 @@ const Loader = ({ redirect = true, durationMs = 2000 }) => {
   }, [navigate, redirect, durationMs])
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-dark-blue">
-      <h1 className="text-6xl font-bold text-white mb-8">doMe</h1>
-      <div className="relative w-16 h-16">
-        <div className="absolute top-0 left-0 w-full h-full border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+    <div className="page-shell flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-5xl font-bold mb-8">doME</h1>
+      <div className="relative w-14 h-14">
+        <div className="absolute top-0 left-0 w-full h-full border-4 border-[var(--text)] border-t-transparent rounded-full animate-spin"></div>
       </div>
     </div>
   )
 }
 
 export default Loader
-

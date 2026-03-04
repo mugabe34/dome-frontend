@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import axios from 'axios'
+import { createContext, useContext, useMemo, useState, useEffect } from 'react'
+import api from '../lib/api'
 
 const AuthContext = createContext()
 
@@ -15,34 +15,31 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
-  const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
-  })
 
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem('token')
-      if (token) {
-        try {
-          const response = await api.get('/auth/me', {
-            headers: { Authorization: `Bearer ${token}` }
-          })
-          setUser(response.data)
-        } catch (error) {
-          localStorage.removeItem('token')
-        }
+      if (!token) {
+        setLoading(false)
+        return
       }
-      setLoading(false)
+
+      try {
+        const response = await api.get('/auth/me')
+        setUser(response.data)
+      } catch {
+        localStorage.removeItem('token')
+      } finally {
+        setLoading(false)
+      }
     }
+
     checkAuth()
   }, [])
 
   const login = async (name, password) => {
     try {
-      const response = await api.post('/auth/login', {
-        name,
-        password
-      })
+      const response = await api.post('/auth/login', { name, password })
       localStorage.setItem('token', response.data.token)
       setUser(response.data.user)
       return { success: true }
@@ -54,23 +51,18 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, password, showLoader = true) => {
     if (showLoader) {
       setIsProcessing(true)
-      
-      // Wait for 3 seconds minimum
-      await new Promise(resolve => setTimeout(resolve, 3000))
+      await new Promise((resolve) => setTimeout(resolve, 1200))
     }
-    
+
     try {
-      const response = await api.post('/auth/register', {
-        name,
-        password
-      })
+      const response = await api.post('/auth/register', { name, password })
       localStorage.setItem('token', response.data.token)
       setUser(response.data.user)
-      setIsProcessing(false)
       return { success: true }
     } catch (error) {
-      setIsProcessing(false)
       return { success: false, message: error.response?.data?.message || 'Registration failed' }
+    } finally {
+      setIsProcessing(false)
     }
   }
 
@@ -79,15 +71,10 @@ export const AuthProvider = ({ children }) => {
     setUser(null)
   }
 
-  const value = {
-    user,
-    loading,
-    isProcessing,
-    login,
-    register,
-    logout
-  }
+  const value = useMemo(
+    () => ({ user, loading, isProcessing, login, register, logout }),
+    [user, loading, isProcessing]
+  )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
-
